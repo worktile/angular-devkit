@@ -1,0 +1,22 @@
+{
+  "name": "angular-devkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/worktile/angular-devkit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/worktile/angular-devkit/issues"
+  },
+  "homepage": "https://github.com/worktile/angular-devkit#readme",
+  "devDependencies": {
+    "typescript": "^3.3.3333"
+  }
+}
