@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-webpack": "ng run demo:build-webpack",
+    "start-webpack": "ng run demo:serve-webpack",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,13 +27,15 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.11.0",
+    "@angular-builders/custom-webpack": "^7.4.3",
+    "@angular-builders/dev-server": "^7.3.1",
+    "@angular-devkit/build-angular": "~0.13.5",
     "@angular/cli": "~7.1.4",
     "@angular/compiler-cli": "~7.1.0",
     "@angular/language-service": "~7.1.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
