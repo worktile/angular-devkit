@@ -15,14 +15,20 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./webpack-extra.config.js",
+              "mergeStrategies": { "module.rules": "prepend" },
+              "replaceDuplicatePlugins": true
+            },
             "outputPath": "dist/demo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
+            "vendorChunk": false,
             "styles": ["src/styles.scss"],
             "scripts": []
           },
@@ -54,61 +60,6 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "demo:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "demo:build:production"
-            }
-          }
-        },
-        "build-webpack": {
-          "builder": "@angular-builders/custom-webpack:browser",
-          "options": {
-            "customWebpackConfig": {
-              "path": "./extra-webpack.config.js",
-              "mergeStrategies": { "module.rules": "prepend" },
-              "replaceDuplicatePlugins": true
-            },
-            "outputPath": "dist/demo",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve-webpack": {
           "builder": "@angular-builders/dev-server:generic",
           "options": {
             "browserTarget": "demo:build-webpack"

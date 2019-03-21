@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run tsc && npm run copy",
+    "rebuild": "npm run clean && npm run build",
+    "tsc": "tsc",
+    "clean": "rimraf built",
+    "copy": "cpx src/package.json built",
+    "test": "mocha --timeout 999999 src/test/test.ts --require ts-node/register/transpile-only",
+    "publish": "cd built && npm run publish"
   },
   "repository": {
     "type": "git",
@@ -16,7 +22,19 @@
     "url": "https://github.com/worktile/angular-devkit/issues"
   },
   "homepage": "https://github.com/worktile/angular-devkit#readme",
+  "dependencies": {
+    "@angular-builders/custom-webpack": "^7.4.3",
+    "@angular-builders/dev-server": "^7.3.1",
+    "@angular-devkit/build-angular": "~0.13.5",
+    "webpack-assets-manifest": "^3.1.1"
+  },
   "devDependencies": {
+    "@types/node": "^11.11.4",
+    "@types/webpack-assets-manifest": "^3.0.0",
+    "cpx": "^1.5.0",
+    "mocha": "^6.0.2",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.0.3",
     "typescript": "^3.3.3333"
   }
 }
