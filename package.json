@@ -1,6 +1,6 @@
 {
   "name": "@worktile/angular-devkit",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -29,12 +29,16 @@
     "webpack-assets-manifest": "^3.1.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.123",
+    "@types/mocha": "^5.2.6",
     "@types/node": "^11.11.4",
     "@types/webpack-assets-manifest": "^3.0.0",
     "cpx": "^1.5.0",
+    "lodash": "^4.17.11",
     "mocha": "^6.0.2",
     "rimraf": "^2.6.3",
     "ts-node": "^8.0.3",
+    "tslib": "^1.9.3",
     "typescript": "^3.3.3333"
   }
 }
