@@ -29,5 +29,4 @@ npm i @worktile/angular-devkit --save
         },
 ```
 
-
 ## gulp theme

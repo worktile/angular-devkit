@@ -8,7 +8,18 @@ export const angularDependencies = {
     '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic'
 };
 
-
 export const wtDependencies = {
-    'ngx-tethys': 'ngx-tethys.umd',
-}
+    'ngx-tethys': 'ngx-tethys.umd'
+};
+
+export const basicDependencies = {
+    jquery: 'jQuery',
+    moment: 'moment',
+    lodash: '_',
+    angular: 'angular',
+    rxjs: 'rxjs',
+    'rxjs/operators': 'rxjs.operators',
+    quill: 'Quill'
+};
+
+export const dependencies = Object.assign({}, basicDependencies);

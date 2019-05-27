@@ -1,16 +1,16 @@
 {
   "name": "@worktile/angular-devkit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run tsc && npm run copy",
-    "rebuild": "npm run clean && npm run build",
+    "build-only": "npm run tsc && npm run copy",
+    "build": "npm run clean && npm run build-only",
     "tsc": "tsc",
     "clean": "rimraf built",
     "copy": "cpx src/package.json built",
     "test": "mocha --timeout 999999 src/test/test.ts --require ts-node/register/transpile-only",
-    "publish": "cd built && npm publish --access=public"
+    "pub": "cd built && npm publish --access=public"
   },
   "repository": {
     "type": "git",
