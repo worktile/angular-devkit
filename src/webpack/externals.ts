@@ -20,6 +20,7 @@ export const basicDependencies = {
     rxjs: 'rxjs',
     'rxjs/operators': 'rxjs.operators',
     quill: 'Quill',
+    'quill-blot-formatter': 'QuillBlotFormatter',
     highcharts: 'Highcharts'
 };
 
