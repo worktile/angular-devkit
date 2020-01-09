@@ -21,7 +21,8 @@ export const basicDependencies = {
     'rxjs/operators': 'rxjs.operators',
     quill: 'Quill',
     'quill-blot-formatter': 'QuillBlotFormatter',
-    highcharts: 'Highcharts'
+    highcharts: 'Highcharts',
+    codemirror: 'CodeMirror'
 };
 
 export const dependencies = Object.assign({}, basicDependencies);
