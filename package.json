@@ -10,7 +10,7 @@
     "clean": "rimraf built",
     "copy": "cpx src/package.json built",
     "test": "mocha --timeout 999999 src/test/test.ts --require ts-node/register/transpile-only",
-    "pub": "cd built && npm publish --access=public"
+    "pub": "npm run build && cd built && npm publish --access=public"
   },
   "repository": {
     "type": "git",
