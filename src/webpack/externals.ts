@@ -22,7 +22,8 @@ export const basicDependencies = {
     quill: 'Quill',
     'quill-blot-formatter': 'QuillBlotFormatter',
     highcharts: 'Highcharts',
-    codemirror: 'CodeMirror'
+    codemirror: 'CodeMirror',
+    'date-fns': 'date-fns'
 };
 
 export const dependencies = Object.assign({}, basicDependencies);
