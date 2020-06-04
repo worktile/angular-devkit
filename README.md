@@ -21,9 +21,9 @@ npm i @worktile/angular-devkit --save
             ...
         }
 ```
-3. change serve's "builder" to "@angular-builders/dev-server:generic
+3. change serve's "builder" to "@angular-builders/custom-webpack:dev-server"
 ```
-       "builder": "@angular-builders/dev-server:generic",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "demo:build-webpack"
         },
