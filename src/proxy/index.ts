@@ -1,16 +1,21 @@
 interface BuildProxyConfigOptions {
+    portalPort?: number;
+    rootDomains?: string[];
     secondaryDomains?: string[];
     domainIteratee?: (domain: string, proxyConfig: { [key: string]: any }) => void;
 }
 
-const DEFAULT_BUILD_PROXY_CONFIG_OPTIONS: BuildProxyConfigOptions = {
+const defaultBuildProxyConfigOptions: BuildProxyConfigOptions = {
+    portalPort: 10000,
+    rootDomains: ['pingcode.local', 'worktile.local'],
     secondaryDomains: ['at', 'yctech'],
-    domainIteratee: () => {}
+    domainIteratee: () => {},
 };
 
 interface ProxySubApplicationOptions {
     port: number;
     apiPort: number;
+    apiName?: string;
 }
 
 class ProxyConfigBuilder {
@@ -20,20 +25,34 @@ class ProxyConfigBuilder {
         this.apps = {
             agile: {
                 port: 11000,
-                apiPort: 11001
+                apiPort: 11001,
             },
-            pipeline: {
+            pipe: {
                 port: 12000,
-                apiPort: 12001
+                apiPort: 12001,
+                apiName: 'pipeline',
             },
-            testcase: {
+            testhub: {
                 port: 13000,
-                apiPort: 13001
+                apiPort: 13001,
             },
-            bugtrace: {
+            trace: {
                 port: 14000,
-                apiPort: 14001
-            }
+                apiPort: 14001,
+                apiName: 'tracking',
+            },
+            wiki: {
+                port: 15000,
+                apiPort: 15001,
+            },
+            plan: {
+                port: 16000,
+                apiPort: 16001,
+            },
+            okr: {
+                port: 17000,
+                apiPort: 17001,
+            },
         };
     }
 
@@ -46,92 +65,93 @@ class ProxyConfigBuilder {
     }
 
     buildProxyConfig(options: BuildProxyConfigOptions = {}): any {
-        options = Object.assign(DEFAULT_BUILD_PROXY_CONFIG_OPTIONS, options);
+        options = Object.assign({}, defaultBuildProxyConfigOptions, options);
+
+        const rootDomains = options.rootDomains ? options.rootDomains : ['pingcode.local', 'worktile.local'];
         const secondaryDomains = options.secondaryDomains ? options.secondaryDomains : ['at', 'yctech'];
+        const portalPort = options.portalPort ? options.portalPort : 10000;
 
         const PROXY_CONFIG = {};
 
-        secondaryDomains.forEach(domain => {
-            const localOriginWithoutPort = `http://${domain}.worktile.local`;
-            const portalOrigin = `${localOriginWithoutPort}:10000`;
+        rootDomains.forEach((rootDomain) => {
+            secondaryDomains.forEach((domain) => {
+                const localOriginWithoutPort = `http://${domain}.${rootDomain}`;
+                const portalOrigin = `${localOriginWithoutPort}:${portalPort}`;
 
-            // past app
-            PROXY_CONFIG[`${portalOrigin}/app-past/static`] = {
-                target: `${localOriginWithoutPort}:8000`,
-                pathRewrite: { '^/app-past/static': '' },
-                secure: false,
-                changeOrigin: false
-            };
+                // admin static
+                PROXY_CONFIG[`${portalOrigin}/static/admin`] = {
+                    target: `${localOriginWithoutPort}:10001`,
+                    pathRewrite: { [`^/static/admin`]: '' },
+                    secure: false,
+                    changeOrigin: false,
+                };
 
-            PROXY_CONFIG[`http://${domain}.worktile.local:10000/i18n`] = {
-                target: `http://${domain}.worktile.local:8000`,
-                secure: false,
-                changeOrigin: false
-            };
+                // typhon api
+                PROXY_CONFIG[`${portalOrigin}/api/typhon`] = {
+                    target: `${localOriginWithoutPort}:10010`,
+                    secure: false,
+                    changeOrigin: false,
+                };
 
-            PROXY_CONFIG[`http://${domain}.worktile.local:10000/image`] = {
-                target: `http://${domain}.worktile.local:8000`,
-                secure: false,
-                changeOrigin: false
-            };
+                // ladon api
+                PROXY_CONFIG[`${portalOrigin}/api/ladon`] = {
+                    target: `${localOriginWithoutPort}:10030`,
+                    secure: false,
+                    changeOrigin: false,
+                };
 
-            PROXY_CONFIG[`http://${domain}.worktile.local:10000/fonts`] = {
-                target: `http://${domain}.worktile.local:8000`,
-                secure: false,
-                changeOrigin: false
-            };
+                // marketplace api
+                PROXY_CONFIG[`${portalOrigin}/api/marketplace`] = {
+                    target: `${localOriginWithoutPort}:10021`,
+                    secure: false,
+                    changeOrigin: false,
+                };
 
-            for (const appName in this.apps) {
-                if (this.apps.hasOwnProperty(appName)) {
-                    const { port, apiPort } = this.apps[appName];
+                // open admin api
+                PROXY_CONFIG[`${portalOrigin}/api/open/admin`] = {
+                    target: `${localOriginWithoutPort}:30001`,
+                    secure: false,
+                    changeOrigin: false,
+                };
 
-                    // sky static
-                    PROXY_CONFIG[`${portalOrigin}/${appName}/static`] = {
-                        target: `${localOriginWithoutPort}:${port}`,
-                        pathRewrite: { [`^/${appName}/static`]: '' },
-                        secure: false,
-                        changeOrigin: false
-                    };
+                for (const appName in this.apps) {
+                    if (this.apps.hasOwnProperty(appName)) {
+                        const { port, apiPort } = this.apps[appName];
+                        // sky static
+                        PROXY_CONFIG[`${portalOrigin}/${appName}/static`] = {
+                            target: `${localOriginWithoutPort}:${port}`,
+                            pathRewrite: { [`^/${appName}/static`]: '' },
+                            secure: false,
+                            changeOrigin: false,
+                        };
 
-                    // api
-                    PROXY_CONFIG[`${portalOrigin}/api/${appName}`] = {
-                        target: `${localOriginWithoutPort}:${apiPort}`,
-                        secure: false,
-                        changeOrigin: false
-                    };
+                        // api
+                        PROXY_CONFIG[`${portalOrigin}/api/${appName}`] = {
+                            target: `${localOriginWithoutPort}:${apiPort}`,
+                            secure: false,
+                            changeOrigin: false,
+                        };
+                    }
                 }
-            }
-
-            // account api
-            PROXY_CONFIG[`${portalOrigin}/api/account`] = {
-                target: `${localOriginWithoutPort}:7000`,
-                secure: false,
-                changeOrigin: false
-            };
-
-            options.domainIteratee(domain, PROXY_CONFIG);
-
-            // past api
-            PROXY_CONFIG[`${portalOrigin}/api`] = {
-                target: `${localOriginWithoutPort}:8100`,
-                secure: false,
-                changeOrigin: false
-            };
-
-            // wt-charm-sky signin
-            // PROXY_CONFIG[`${portalOrigin}/signin/*`] = {
-            //     // host: `${domain}.worktile.local:10000`,
-            //     target: `${localOriginWithoutPort}:7999`,
-            //     secure: true,
-            //     changeOrigin: true,
-            //     bypass: function(req, res, proxyOptions) {
-            //         console.log(req.url);
-            //         console.log(req.host);
-            //         console.log(req.host);
-            //     }
-            // };
+                options.domainIteratee(domain, PROXY_CONFIG);
+            });
         });
         return PROXY_CONFIG;
+    }
+
+    buildAppProxyConfig(
+        appName: string,
+        appOption: ProxySubApplicationOptions,
+        options: BuildProxyConfigOptions = {}
+    ): any {
+        this.setProxySubApps({
+            [appName]: appOption,
+        });
+
+        return this.buildProxyConfig({
+            ...options,
+            portalPort: appOption.port,
+        });
     }
 }
 
