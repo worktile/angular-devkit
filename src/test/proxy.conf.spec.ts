@@ -4,6 +4,12 @@ import { isEqual } from 'lodash';
 const proxy = require('../proxy');
 
 const expectedAtPingCodeConfig = {
+    'http://at.pingcode.local:10000/static/portal': {
+        target: 'http://at.pingcode.local:10000',
+        pathRewrite: { '^/static/portal': '' },
+        secure: false,
+        changeOrigin: false,
+    },
     'http://at.pingcode.local:10000/static/admin': {
         target: 'http://at.pingcode.local:10001',
         pathRewrite: { '^/static/admin': '' },
@@ -30,9 +36,9 @@ const expectedAtPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/agile/static': {
+    'http://at.pingcode.local:10000/static/agile': {
         target: 'http://at.pingcode.local:11000',
-        pathRewrite: { '^/agile/static': '' },
+        pathRewrite: { '^/static/agile': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -41,20 +47,20 @@ const expectedAtPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/pipe/static': {
+    'http://at.pingcode.local:10000/static/pipe': {
         target: 'http://at.pingcode.local:12000',
-        pathRewrite: { '^/pipe/static': '' },
+        pathRewrite: { '^/static/pipe': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/api/pipe': {
+    'http://at.pingcode.local:10000/api/pipeline': {
         target: 'http://at.pingcode.local:12001',
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/testhub/static': {
+    'http://at.pingcode.local:10000/static/testhub': {
         target: 'http://at.pingcode.local:13000',
-        pathRewrite: { '^/testhub/static': '' },
+        pathRewrite: { '^/static/testhub': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -63,20 +69,20 @@ const expectedAtPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/trace/static': {
+    'http://at.pingcode.local:10000/static/trace': {
         target: 'http://at.pingcode.local:14000',
-        pathRewrite: { '^/trace/static': '' },
+        pathRewrite: { '^/static/trace': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/api/trace': {
+    'http://at.pingcode.local:10000/api/tracking': {
         target: 'http://at.pingcode.local:14001',
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/wiki/static': {
+    'http://at.pingcode.local:10000/static/wiki': {
         target: 'http://at.pingcode.local:15000',
-        pathRewrite: { '^/wiki/static': '' },
+        pathRewrite: { '^/static/wiki': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -85,9 +91,9 @@ const expectedAtPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/plan/static': {
+    'http://at.pingcode.local:10000/static/plan': {
         target: 'http://at.pingcode.local:16000',
-        pathRewrite: { '^/plan/static': '' },
+        pathRewrite: { '^/static/plan': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -96,9 +102,9 @@ const expectedAtPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/okr/static': {
+    'http://at.pingcode.local:10000/static/okr': {
         target: 'http://at.pingcode.local:17000',
-        pathRewrite: { '^/okr/static': '' },
+        pathRewrite: { '^/static/okr': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -110,6 +116,12 @@ const expectedAtPingCodeConfig = {
 };
 
 const expectedYCTechPingCodeConfig = {
+    'http://yctech.pingcode.local:10000/static/portal': {
+        target: 'http://yctech.pingcode.local:10000',
+        pathRewrite: { '^/static/portal': '' },
+        secure: false,
+        changeOrigin: false,
+    },
     'http://yctech.pingcode.local:10000/static/admin': {
         target: 'http://yctech.pingcode.local:10001',
         pathRewrite: { '^/static/admin': '' },
@@ -136,9 +148,9 @@ const expectedYCTechPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/agile/static': {
+    'http://yctech.pingcode.local:10000/static/agile': {
         target: 'http://yctech.pingcode.local:11000',
-        pathRewrite: { '^/agile/static': '' },
+        pathRewrite: { '^/static/agile': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -147,20 +159,20 @@ const expectedYCTechPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/pipe/static': {
+    'http://yctech.pingcode.local:10000/static/pipe': {
         target: 'http://yctech.pingcode.local:12000',
-        pathRewrite: { '^/pipe/static': '' },
+        pathRewrite: { '^/static/pipe': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/api/pipe': {
+    'http://yctech.pingcode.local:10000/api/pipeline': {
         target: 'http://yctech.pingcode.local:12001',
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/testhub/static': {
+    'http://yctech.pingcode.local:10000/static/testhub': {
         target: 'http://yctech.pingcode.local:13000',
-        pathRewrite: { '^/testhub/static': '' },
+        pathRewrite: { '^/static/testhub': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -169,20 +181,20 @@ const expectedYCTechPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/trace/static': {
+    'http://yctech.pingcode.local:10000/static/trace': {
         target: 'http://yctech.pingcode.local:14000',
-        pathRewrite: { '^/trace/static': '' },
+        pathRewrite: { '^/static/trace': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/api/trace': {
+    'http://yctech.pingcode.local:10000/api/tracking': {
         target: 'http://yctech.pingcode.local:14001',
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/wiki/static': {
+    'http://yctech.pingcode.local:10000/static/wiki': {
         target: 'http://yctech.pingcode.local:15000',
-        pathRewrite: { '^/wiki/static': '' },
+        pathRewrite: { '^/static/wiki': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -191,9 +203,9 @@ const expectedYCTechPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/plan/static': {
+    'http://yctech.pingcode.local:10000/static/plan': {
         target: 'http://yctech.pingcode.local:16000',
-        pathRewrite: { '^/plan/static': '' },
+        pathRewrite: { '^/static/plan': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -202,9 +214,9 @@ const expectedYCTechPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/okr/static': {
+    'http://yctech.pingcode.local:10000/static/okr': {
         target: 'http://yctech.pingcode.local:17000',
-        pathRewrite: { '^/okr/static': '' },
+        pathRewrite: { '^/static/okr': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -216,6 +228,12 @@ const expectedYCTechPingCodeConfig = {
 };
 
 const expectedAtWorktileConfig = {
+    'http://at.worktile.local:10000/static/portal': {
+        target: 'http://at.worktile.local:10000',
+        pathRewrite: { '^/static/portal': '' },
+        secure: false,
+        changeOrigin: false,
+    },
     'http://at.worktile.local:10000/static/admin': {
         target: 'http://at.worktile.local:10001',
         pathRewrite: { '^/static/admin': '' },
@@ -242,9 +260,9 @@ const expectedAtWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/agile/static': {
+    'http://at.worktile.local:10000/static/agile': {
         target: 'http://at.worktile.local:11000',
-        pathRewrite: { '^/agile/static': '' },
+        pathRewrite: { '^/static/agile': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -253,20 +271,20 @@ const expectedAtWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/pipe/static': {
+    'http://at.worktile.local:10000/static/pipe': {
         target: 'http://at.worktile.local:12000',
-        pathRewrite: { '^/pipe/static': '' },
+        pathRewrite: { '^/static/pipe': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/api/pipe': {
+    'http://at.worktile.local:10000/api/pipeline': {
         target: 'http://at.worktile.local:12001',
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/testhub/static': {
+    'http://at.worktile.local:10000/static/testhub': {
         target: 'http://at.worktile.local:13000',
-        pathRewrite: { '^/testhub/static': '' },
+        pathRewrite: { '^/static/testhub': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -275,20 +293,20 @@ const expectedAtWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/trace/static': {
+    'http://at.worktile.local:10000/static/trace': {
         target: 'http://at.worktile.local:14000',
-        pathRewrite: { '^/trace/static': '' },
+        pathRewrite: { '^/static/trace': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/api/trace': {
+    'http://at.worktile.local:10000/api/tracking': {
         target: 'http://at.worktile.local:14001',
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/wiki/static': {
+    'http://at.worktile.local:10000/static/wiki': {
         target: 'http://at.worktile.local:15000',
-        pathRewrite: { '^/wiki/static': '' },
+        pathRewrite: { '^/static/wiki': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -297,9 +315,9 @@ const expectedAtWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/plan/static': {
+    'http://at.worktile.local:10000/static/plan': {
         target: 'http://at.worktile.local:16000',
-        pathRewrite: { '^/plan/static': '' },
+        pathRewrite: { '^/static/plan': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -308,9 +326,9 @@ const expectedAtWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/okr/static': {
+    'http://at.worktile.local:10000/static/okr': {
         target: 'http://at.worktile.local:17000',
-        pathRewrite: { '^/okr/static': '' },
+        pathRewrite: { '^/static/okr': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -322,6 +340,12 @@ const expectedAtWorktileConfig = {
 };
 
 const expectedYCTechWorktileConfig = {
+    'http://yctech.worktile.local:10000/static/portal': {
+        target: 'http://yctech.worktile.local:10000',
+        pathRewrite: { '^/static/portal': '' },
+        secure: false,
+        changeOrigin: false,
+    },
     'http://yctech.worktile.local:10000/static/admin': {
         target: 'http://yctech.worktile.local:10001',
         pathRewrite: { '^/static/admin': '' },
@@ -348,9 +372,9 @@ const expectedYCTechWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/agile/static': {
+    'http://yctech.worktile.local:10000/static/agile': {
         target: 'http://yctech.worktile.local:11000',
-        pathRewrite: { '^/agile/static': '' },
+        pathRewrite: { '^/static/agile': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -359,20 +383,20 @@ const expectedYCTechWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/pipe/static': {
+    'http://yctech.worktile.local:10000/static/pipe': {
         target: 'http://yctech.worktile.local:12000',
-        pathRewrite: { '^/pipe/static': '' },
+        pathRewrite: { '^/static/pipe': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/api/pipe': {
+    'http://yctech.worktile.local:10000/api/pipeline': {
         target: 'http://yctech.worktile.local:12001',
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/testhub/static': {
+    'http://yctech.worktile.local:10000/static/testhub': {
         target: 'http://yctech.worktile.local:13000',
-        pathRewrite: { '^/testhub/static': '' },
+        pathRewrite: { '^/static/testhub': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -381,20 +405,20 @@ const expectedYCTechWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/trace/static': {
+    'http://yctech.worktile.local:10000/static/trace': {
         target: 'http://yctech.worktile.local:14000',
-        pathRewrite: { '^/trace/static': '' },
+        pathRewrite: { '^/static/trace': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/api/trace': {
+    'http://yctech.worktile.local:10000/api/tracking': {
         target: 'http://yctech.worktile.local:14001',
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/wiki/static': {
+    'http://yctech.worktile.local:10000/static/wiki': {
         target: 'http://yctech.worktile.local:15000',
-        pathRewrite: { '^/wiki/static': '' },
+        pathRewrite: { '^/static/wiki': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -403,9 +427,9 @@ const expectedYCTechWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/plan/static': {
+    'http://yctech.worktile.local:10000/static/plan': {
         target: 'http://yctech.worktile.local:16000',
-        pathRewrite: { '^/plan/static': '' },
+        pathRewrite: { '^/static/plan': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -414,9 +438,9 @@ const expectedYCTechWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/okr/static': {
+    'http://yctech.worktile.local:10000/static/okr': {
         target: 'http://yctech.worktile.local:17000',
-        pathRewrite: { '^/okr/static': '' },
+        pathRewrite: { '^/static/okr': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -430,6 +454,12 @@ const expectedYCTechWorktileConfig = {
 // at1.test.local
 
 const expectedAt1TestLocalPortalConfig = {
+    'http://at1.test.local:20000/static/portal': {
+        target: 'http://at1.test.local:20000',
+        pathRewrite: { '^/static/portal': '' },
+        secure: false,
+        changeOrigin: false,
+    },
     'http://at1.test.local:20000/static/admin': {
         target: 'http://at1.test.local:10001',
         pathRewrite: { '^/static/admin': '' },
@@ -458,9 +488,9 @@ const expectedAt1TestLocalPortalConfig = {
     },
 };
 const expectedAt1TestLocalConfig = Object.assign({}, expectedAt1TestLocalPortalConfig, {
-    'http://at1.test.local:20000/agile/static': {
+    'http://at1.test.local:20000/static/agile': {
         target: 'http://at1.test.local:11000',
-        pathRewrite: { '^/agile/static': '' },
+        pathRewrite: { '^/static/agile': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -469,20 +499,20 @@ const expectedAt1TestLocalConfig = Object.assign({}, expectedAt1TestLocalPortalC
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/pipe/static': {
+    'http://at1.test.local:20000/static/pipe': {
         target: 'http://at1.test.local:12000',
-        pathRewrite: { '^/pipe/static': '' },
+        pathRewrite: { '^/static/pipe': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/api/pipe': {
+    'http://at1.test.local:20000/api/pipeline': {
         target: 'http://at1.test.local:12001',
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/testhub/static': {
+    'http://at1.test.local:20000/static/testhub': {
         target: 'http://at1.test.local:13000',
-        pathRewrite: { '^/testhub/static': '' },
+        pathRewrite: { '^/static/testhub': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -491,20 +521,20 @@ const expectedAt1TestLocalConfig = Object.assign({}, expectedAt1TestLocalPortalC
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/trace/static': {
+    'http://at1.test.local:20000/static/trace': {
         target: 'http://at1.test.local:14000',
-        pathRewrite: { '^/trace/static': '' },
+        pathRewrite: { '^/static/trace': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/api/trace': {
+    'http://at1.test.local:20000/api/tracking': {
         target: 'http://at1.test.local:14001',
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/wiki/static': {
+    'http://at1.test.local:20000/static/wiki': {
         target: 'http://at1.test.local:15000',
-        pathRewrite: { '^/wiki/static': '' },
+        pathRewrite: { '^/static/wiki': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -513,9 +543,9 @@ const expectedAt1TestLocalConfig = Object.assign({}, expectedAt1TestLocalPortalC
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/plan/static': {
+    'http://at1.test.local:20000/static/plan': {
         target: 'http://at1.test.local:16000',
-        pathRewrite: { '^/plan/static': '' },
+        pathRewrite: { '^/static/plan': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -524,9 +554,9 @@ const expectedAt1TestLocalConfig = Object.assign({}, expectedAt1TestLocalPortalC
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/okr/static': {
+    'http://at1.test.local:20000/static/okr': {
         target: 'http://at1.test.local:17000',
-        pathRewrite: { '^/okr/static': '' },
+        pathRewrite: { '^/static/okr': '' },
         secure: false,
         changeOrigin: false,
     },
@@ -572,6 +602,8 @@ describe('build proxy config', () => {
             rootDomains: ['test.local'],
             secondaryDomains: ['at1'],
         });
+
+        console.log(config);
         notStrictEqual(config, null);
         deepStrictEqual(config, expectedAt1TestLocalConfig);
     });
@@ -615,9 +647,9 @@ describe('build proxy config', () => {
         deepStrictEqual(
             config,
             Object.assign({}, expectedAt1TestLocalPortalConfig, {
-                'http://at1.test.local:20000/flow/static': {
+                'http://at1.test.local:20000/static/flow': {
                     target: 'http://at1.test.local:20000',
-                    pathRewrite: { '^/flow/static': '' },
+                    pathRewrite: { '^/static/flow': '' },
                     secure: false,
                     changeOrigin: false,
                 },
@@ -649,9 +681,9 @@ describe('build app proxy config', () => {
         deepStrictEqual(
             config,
             Object.assign({}, expectedAt1TestLocalPortalConfig, {
-                'http://at1.test.local:20000/flow/static': {
+                'http://at1.test.local:20000/static/flow': {
                     target: 'http://at1.test.local:20000',
-                    pathRewrite: { '^/flow/static': '' },
+                    pathRewrite: { '^/static/flow': '' },
                     secure: false,
                     changeOrigin: false,
                 },

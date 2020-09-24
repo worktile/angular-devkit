@@ -78,6 +78,13 @@ class ProxyConfigBuilder {
                 const localOriginWithoutPort = `http://${domain}.${rootDomain}`;
                 const portalOrigin = `${localOriginWithoutPort}:${portalPort}`;
 
+                PROXY_CONFIG[`${portalOrigin}/static/portal`] = {
+                    target: `${portalOrigin}`,
+                    pathRewrite: { [`^/static/portal`]: '' },
+                    secure: false,
+                    changeOrigin: false,
+                };
+
                 // admin static
                 PROXY_CONFIG[`${portalOrigin}/static/admin`] = {
                     target: `${localOriginWithoutPort}:10001`,
@@ -116,23 +123,25 @@ class ProxyConfigBuilder {
 
                 for (const appName in this.apps) {
                     if (this.apps.hasOwnProperty(appName)) {
-                        const { port, apiPort } = this.apps[appName];
+                        const { port, apiPort, apiName } = this.apps[appName];
+
                         // sky static
-                        PROXY_CONFIG[`${portalOrigin}/${appName}/static`] = {
+                        PROXY_CONFIG[`${portalOrigin}/static/${appName}`] = {
                             target: `${localOriginWithoutPort}:${port}`,
-                            pathRewrite: { [`^/${appName}/static`]: '' },
+                            pathRewrite: { [`^/static/${appName}`]: '' },
                             secure: false,
                             changeOrigin: false,
                         };
 
                         // api
-                        PROXY_CONFIG[`${portalOrigin}/api/${appName}`] = {
+                        PROXY_CONFIG[`${portalOrigin}/api/${apiName || appName}`] = {
                             target: `${localOriginWithoutPort}:${apiPort}`,
                             secure: false,
                             changeOrigin: false,
                         };
                     }
                 }
+
                 options.domainIteratee(domain, PROXY_CONFIG);
             });
         });
