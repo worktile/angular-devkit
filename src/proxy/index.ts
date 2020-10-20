@@ -53,6 +53,10 @@ class ProxyConfigBuilder {
                 port: 17000,
                 apiPort: 17001,
             },
+            flow: {
+                port: 18000,
+                apiPort: 18001,
+            },
         };
     }
 
