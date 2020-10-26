@@ -49,7 +49,7 @@ class ProxyConfigBuilder {
                 port: 16000,
                 apiPort: 16001,
             },
-            okr: {
+            goals: {
                 port: 17000,
                 apiPort: 17001,
             },

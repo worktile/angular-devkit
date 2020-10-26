@@ -102,13 +102,13 @@ const expectedAtPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/static/okr': {
+    'http://at.pingcode.local:10000/static/goals': {
         target: 'http://at.pingcode.local:17000',
-        pathRewrite: { '^/static/okr': '' },
+        pathRewrite: { '^/static/goals': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at.pingcode.local:10000/api/okr': {
+    'http://at.pingcode.local:10000/api/goals': {
         target: 'http://at.pingcode.local:17001',
         secure: false,
         changeOrigin: false,
@@ -214,13 +214,13 @@ const expectedYCTechPingCodeConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/static/okr': {
+    'http://yctech.pingcode.local:10000/static/goals': {
         target: 'http://yctech.pingcode.local:17000',
-        pathRewrite: { '^/static/okr': '' },
+        pathRewrite: { '^/static/goals': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.pingcode.local:10000/api/okr': {
+    'http://yctech.pingcode.local:10000/api/goals': {
         target: 'http://yctech.pingcode.local:17001',
         secure: false,
         changeOrigin: false,
@@ -326,13 +326,13 @@ const expectedAtWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/static/okr': {
+    'http://at.worktile.local:10000/static/goals': {
         target: 'http://at.worktile.local:17000',
-        pathRewrite: { '^/static/okr': '' },
+        pathRewrite: { '^/static/goals': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at.worktile.local:10000/api/okr': {
+    'http://at.worktile.local:10000/api/goals': {
         target: 'http://at.worktile.local:17001',
         secure: false,
         changeOrigin: false,
@@ -438,13 +438,13 @@ const expectedYCTechWorktileConfig = {
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/static/okr': {
+    'http://yctech.worktile.local:10000/static/goals': {
         target: 'http://yctech.worktile.local:17000',
-        pathRewrite: { '^/static/okr': '' },
+        pathRewrite: { '^/static/goals': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://yctech.worktile.local:10000/api/okr': {
+    'http://yctech.worktile.local:10000/api/goals': {
         target: 'http://yctech.worktile.local:17001',
         secure: false,
         changeOrigin: false,
@@ -554,13 +554,13 @@ const expectedAt1TestLocalConfig = Object.assign({}, expectedAt1TestLocalPortalC
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/static/okr': {
+    'http://at1.test.local:20000/static/goals': {
         target: 'http://at1.test.local:17000',
-        pathRewrite: { '^/static/okr': '' },
+        pathRewrite: { '^/static/goals': '' },
         secure: false,
         changeOrigin: false,
     },
-    'http://at1.test.local:20000/api/okr': {
+    'http://at1.test.local:20000/api/goals': {
         target: 'http://at1.test.local:17001',
         secure: false,
         changeOrigin: false,
