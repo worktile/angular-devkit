@@ -18,28 +18,26 @@ describe('build proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
+                cookieDomainRewrite: 'at.pingcode.local',
             },
             'http://at.pingcode.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
             },
             'http://at.worktile.local:10000/api': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.worktile.local',
+                cookieDomainRewrite: 'at.worktile.local',
             },
             'http://at.worktile.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.worktile.local',
             },
         });
     });
@@ -57,14 +55,13 @@ describe('build proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at1.test.local',
+                cookieDomainRewrite: 'at1.test.local',
             },
             'http://at1.test.local:10000/static': {
                 target: 'http://at1.test.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at1.test.local',
             },
         });
     });
@@ -97,14 +94,13 @@ describe('build proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
+                cookieDomainRewrite: 'at.pingcode.local',
             },
             'http://at.pingcode.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
             },
             'http://at.worktile.local:10000/static/agile': {
                 target: 'http://at.worktile.local:11000',
@@ -127,14 +123,13 @@ describe('build proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.worktile.local',
+                cookieDomainRewrite: 'at.worktile.local',
             },
             'http://at.worktile.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.worktile.local',
             },
         });
     });
@@ -181,14 +176,13 @@ describe('build proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
+                cookieDomainRewrite: 'at.pingcode.local',
             },
             'http://at.pingcode.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
             },
             'http://at.worktile.local:10000/static/app1': {
                 target: 'http://at.worktile.local:9000',
@@ -206,14 +200,13 @@ describe('build proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.worktile.local',
+                cookieDomainRewrite: 'at.worktile.local',
             },
             'http://at.worktile.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.worktile.local',
             },
         });
     });
@@ -243,14 +236,13 @@ describe('build app proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
+                cookieDomainRewrite: 'at.pingcode.local',
             },
             'http://at.pingcode.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.pingcode.local',
             },
             'http://at.worktile.local:10000/static/app1': {
                 target: 'http://at.worktile.local:9000',
@@ -268,14 +260,13 @@ describe('build app proxy config', () => {
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '/api' },
-                cookieDomainRewrite: 'http://at.worktile.local',
+                cookieDomainRewrite: 'at.worktile.local',
             },
             'http://at.worktile.local:10000/static': {
                 target: 'http://at.pingcode.live',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: { '^/static': '/static' },
-                cookieDomainRewrite: 'http://at.worktile.local',
             },
         });
     });

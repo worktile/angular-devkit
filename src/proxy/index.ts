@@ -150,7 +150,7 @@ class ProxyConfigBuilder {
                     pathRewrite: {
                         '^/api': '/api',
                     },
-                    cookieDomainRewrite: localOriginWithoutPort,
+                    cookieDomainRewrite: `${domain}.${rootDomain}`,
                 };
 
                 PROXY_CONFIG[`${portalOrigin}/static`] = {
@@ -159,8 +159,7 @@ class ProxyConfigBuilder {
                     changeOrigin: true,
                     pathRewrite: {
                         '^/static': '/static',
-                    },
-                    cookieDomainRewrite: localOriginWithoutPort,
+                    }
                 };
             });
         });
